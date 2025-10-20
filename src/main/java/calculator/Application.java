@@ -24,9 +24,28 @@ public class Application {
 
         String[] numbers = target.split(separator);
 
+        validate(numbers);
+
         int answer = calculate(numbers);
 
         System.out.println("결과 : " + answer);
+    }
+
+    private static void validate(String[] numbers) {
+        for(String number : numbers) {
+            if(number.isBlank()) {
+                throw new IllegalArgumentException("빈 값이 포함되어 있습니다.");
+            }
+
+            if(!number.matches("-?\\d+")) {
+                throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다: " + number);
+            }
+
+            int num = Integer.parseInt(number);
+            if(num <= 0) {
+                throw new IllegalArgumentException("음수 값이 포함되어 있습니다: " + number);
+            }
+        }
     }
 
     private static int calculate(String[] numbers) {
