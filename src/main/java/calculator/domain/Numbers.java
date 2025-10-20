@@ -13,6 +13,8 @@ public class Numbers {
 
     private void validateAndParse(String[] numberStrings) {
         for (String numberStr : numberStrings) {
+            numberStr = numberStr.trim();
+
             if (numberStr.isBlank()) {
                 throw new IllegalArgumentException("빈 값이 포함되어 있습니다.");
             }
