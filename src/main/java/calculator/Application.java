@@ -2,7 +2,6 @@ package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class Application {
@@ -25,7 +24,18 @@ public class Application {
 
         String[] numbers = target.split(separator);
 
-        System.out.println(Arrays.toString(numbers));
+        int answer = calculate(numbers);
+
+        System.out.println("결과 : " + answer);
+    }
+
+    private static int calculate(String[] numbers) {
+        int total = 0;
+        for(String number : numbers) {
+            int numberInt = Integer.parseInt(number);
+            total += numberInt;
+        }
+        return total;
     }
 
     private static String getCustomSeparator(String input) {
