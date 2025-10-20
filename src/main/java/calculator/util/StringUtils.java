@@ -21,7 +21,7 @@ public class StringUtils {
             target = input.substring(separatorIndex + 2);
         }
 
-        return target.split(separator);
+        return target.split(separator, -1);
     }
 
     private static String getCustomSeparator(String input) {
