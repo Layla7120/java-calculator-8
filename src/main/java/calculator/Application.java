@@ -10,7 +10,7 @@ public class Application {
     public static void main(String[] args) {
         String input = InputView.readInput();
 
-        if(input.isBlank()) {
+        if (input.isBlank()) {
             OutputView.printResult(0);
             return;
         }

@@ -2,8 +2,6 @@ package calculator.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -56,8 +54,7 @@ class StringUtilsTest {
     @Test
     @DisplayName("커스텀 구분자 패턴이 올바르지 않으면 예외 발생")
     void split_invalid_custom_delimiter_pattern() {
-        assertThatThrownBy(() -> StringUtils.split("//;1;2;3"))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> StringUtils.split("//;1;2;3")).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("구분자 형식이 올바르지 않습니다.");
     }
 

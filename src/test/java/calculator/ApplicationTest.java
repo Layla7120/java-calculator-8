@@ -83,8 +83,8 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_음수_포함() {
         assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("1,-2,3"))
-                .isInstanceOf(IllegalArgumentException.class)
+                assertThatThrownBy(() -> runException("1,-2,3"))
+                        .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
@@ -99,16 +99,16 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_숫자_아닌_값_포함() {
         assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("1,a,3"))
-                .isInstanceOf(IllegalArgumentException.class)
+                assertThatThrownBy(() -> runException("1,a,3"))
+                        .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
     @Test
     void 예외_숫자_대신_빈_문자열() {
         assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("1,,2"))
-                .isInstanceOf(IllegalArgumentException.class)
+                assertThatThrownBy(() -> runException("1,,2"))
+                        .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
@@ -131,8 +131,8 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_잘못된_커스텀_구분자_패턴() {
         assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("//;1;2;3"))
-                .isInstanceOf(IllegalArgumentException.class)
+                assertThatThrownBy(() -> runException("//;1;2;3"))
+                        .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
