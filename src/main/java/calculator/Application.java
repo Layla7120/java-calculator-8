@@ -1,77 +1,22 @@
 package calculator;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.regex.Pattern;
+import calculator.domain.Calculator;
+import calculator.domain.Numbers;
+import calculator.util.StringUtils;
+import calculator.view.InputView;
+import calculator.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        String input = Console.readLine();
+        String input = InputView.readInput();
 
-        if(input.isBlank()) {
-            System.out.println("결과 : 0");
-            return;
-        }
+        String[] numberStrings = StringUtils.split(input);
 
-        String target = input;
+        Numbers numbers = new Numbers(numberStrings);
 
-        String separator = "[,:]";
+        Calculator calculator = new Calculator();
+        int result = calculator.sum(numbers.getNumbers());
 
-        String custom_separator = getCustomSeparator(input);
-
-        if(!custom_separator.isBlank()) {
-            separator = separator + "|" + Pattern.quote(custom_separator);
-
-            int separatorIndex = input.indexOf("\\n");
-            target = input.substring(separatorIndex + 2);
-
-        }
-
-        String[] numbers = target.split(separator);
-
-        validate(numbers);
-
-        int answer = calculate(numbers);
-
-        System.out.println("결과 : " + answer);
-    }
-
-    private static void validate(String[] numbers) {
-        for(String number : numbers) {
-            if(number.isBlank()) {
-                throw new IllegalArgumentException("빈 값이 포함되어 있습니다.");
-            }
-
-            if(!number.matches("-?\\d+")) {
-                throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다: " + number);
-            }
-
-            int num = Integer.parseInt(number);
-            if(num <= 0) {
-                throw new IllegalArgumentException("음수 값이 포함되어 있습니다: " + number);
-            }
-        }
-    }
-
-    private static int calculate(String[] numbers) {
-        int total = 0;
-        for(String number : numbers) {
-            int numberInt = Integer.parseInt(number);
-            total += numberInt;
-        }
-        return total;
-    }
-
-    private static String getCustomSeparator(String input) {
-        if(input.startsWith("//")){
-            if (!input.matches("^//(.+)\\\\n.*")) {
-                throw new IllegalArgumentException("구분자 형식이 올바르지 않습니다. (예: //;;\\n1;;2;;3)");
-            }
-
-            return input.replaceFirst("^//(.+)\\\\n.*", "$1");
-        }
-
-        return "";
+        OutputView.printResult(result);
     }
 }
