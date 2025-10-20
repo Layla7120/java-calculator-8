@@ -64,16 +64,14 @@ public class Application {
     }
 
     private static String getCustomSeparator(String input) {
-        if(!input.startsWith("//")){
-            return "";
+        if(input.startsWith("//")){
+            if (!input.matches("^//(.+)\\\\n.*")) {
+                throw new IllegalArgumentException("구분자 형식이 올바르지 않습니다. (예: //;;\\n1;;2;;3)");
+            }
+
+            return input.replaceFirst("^//(.+)\\\\n.*", "$1");
         }
 
-        int endIndex = input.indexOf("\\n");
-
-        if(endIndex <= 2){
-            return "";
-        }
-
-        return input.substring(2, endIndex);
+        return "";
     }
 }
