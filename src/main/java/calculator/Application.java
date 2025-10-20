@@ -64,9 +64,6 @@ public class Application {
 
         int endIndex = input.indexOf("\\n");
 
-        System.out.println("입력 문자열 길이: " + input.length());
-        System.out.println("인덱스 3의 문자: " + input.charAt(3));
-
         if(endIndex <= 2){
             return "";
         }
